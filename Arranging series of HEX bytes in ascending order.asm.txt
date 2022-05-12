@@ -1,0 +1,24 @@
+.model small
+.stack 64
+.data
+List DW 53h, 25h, 19h, 02h
+Count EQU 04h
+.code
+START:mov ax,@data
+      mov ds,ax
+      mov dx,Count-1
+AGAIN0:Mov CX,DX
+       LEA SI,List
+AGAIN1:MOV AX,[SI]
+       CMP AX,[SI+2]
+       JL PR1
+       XCHG [SI+2],AX
+       XCHG [SI],AX
+   PR1:ADD SI,02H
+        LOOP AGAIN1
+        DEC DX
+        JNZ AGAIN0
+        MOV AH,4CH
+        INT 21H
+        HLT
+        END
