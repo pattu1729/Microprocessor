@@ -1,0 +1,22 @@
+.model small
+.stack 64
+.data
+.code
+start:mov ax,@data
+      mov ds,ax
+      mov si,3000h
+      mov di,3500h
+      mov cl,[si]
+      mov ch,00h
+      Inc si
+      mov al,[si]
+      dec cl
+      inc si
+next:cmp al,[si]
+     Jc fit
+     mov al,[si]
+fit:Inc si
+    Loop next
+    mov [di],al
+    hlt
+    end
